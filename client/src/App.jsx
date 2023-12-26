@@ -24,6 +24,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Hero />
+      test
       {loading ? <p>Loading</p> : product ? <CardList data={product} /> : error ? <p>Not found</p> : null}
     </div>
   );
