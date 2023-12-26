@@ -31,13 +31,13 @@ const NavbarLink = styled.button`
   }
 `;
 
-const Navbar = () => {
+const Navbar = ({handleOpen}) => {
   return (
     <StyledNavbar>
       <NavbarContainer>
         <div>Logo</div>
         <div>
-          <NavbarLink href="#">Add Product</NavbarLink>
+          <NavbarLink href="#" onClick={handleOpen}>Add Product</NavbarLink>
           <NavbarLink href="#">
             <i class="bi-cart-fill me-1"></i> Cart
           </NavbarLink>

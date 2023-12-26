@@ -1,31 +1,36 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardList from "./components/CardList";
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import { GetAllData } from "./store/shop/api_actions";
+import AddItemModal from "./components/AddItemModal";
 
 function App() {
-  const [data, setData] = useState([])
-  const dispatch = useDispatch()
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const dispatch = useDispatch();
   const { product, loading, error } = useSelector((state) => state.product);
-  const getAll = async()=>{
-    dispatch(GetAllData())
-  }
 
-  useEffect(()=>{
-    getAll()
-  }, [])
+  useEffect(() => {
+    dispatch(GetAllData());
+  }, [dispatch]);
 
-  useEffect(()=>{
-    console.log("App.js",product)
-  }, [product])
   return (
     <div className="App">
-      <Navbar />
+      <Navbar handleOpen={handleOpen} />
       <Hero />
-      test
-      {loading ? <p>Loading</p> : product ? <CardList data={product} /> : error ? <p>Not found</p> : null}
+      {loading ? (
+        <p>Loading</p>
+      ) : product ? (
+        <CardList data={product} />
+      ) : error ? (
+        <p>Not found</p>
+      ) : null}
+
+      <AddItemModal open={open} setOpen={setOpen} handleClose={handleClose}/>
+      {/* <DrawerCart /> */}
     </div>
   );
 }

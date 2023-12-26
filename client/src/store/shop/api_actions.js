@@ -21,6 +21,7 @@ export const GetById = createAsyncThunk("GetById", async (id) => {
 });
 export const AddNewProduct = createAsyncThunk("AddNewProduct", async (item) => {
     try {
+      console.log("AddNewProduct", item)
       const response = await axios.post(BASE_URL, item);
       return response.data;
     } catch (error) {
