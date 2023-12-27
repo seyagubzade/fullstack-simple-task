@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../store/cart/cartSlice";
 
 const Card = ({ item }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     console.log("Card>>>", item);
   }, [item]);
@@ -38,9 +42,11 @@ const Card = ({ item }) => {
         </div>
         <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
           <div className="text-center">
-            <a className="btn btn-outline-dark mt-auto" href="#">
+            <button className="btn btn-outline-dark mt-auto" onClick={()=>{
+              dispatch(addToCart(item))
+            }}>
               Add to cart
-            </a>
+            </button>
           </div>
         </div>
       </div>

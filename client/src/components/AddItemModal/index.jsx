@@ -33,7 +33,7 @@ const AddItemModal = ({ open, handleClose }) => {
 
   const handleSubmit = (values) => {
     console.log("handleSubmit>>>", values);
-    // dispatch(AddNewProduct(values));
+    dispatch(AddNewProduct(values));
     handleClose();
   };
 
